@@ -49,7 +49,7 @@ app.get('/tracks/:id', function (req, res){
 
 });
 
-//Update the specific track information on page
+//Update page for specific track information on page
 app.get('/tracks/update/:id', function (req, res){
 		var id = req.params.id;
 		var currentTrack;
@@ -62,8 +62,7 @@ app.get('/tracks/update/:id', function (req, res){
 	});
 });
 
-
-
+//Update info and redirect
 app.put('/tracks/update/:id', function (req, res){
 	var id = req.params.id;
 	var currentTrack;
@@ -71,8 +70,7 @@ app.put('/tracks/update/:id', function (req, res){
 	var trackAuthor = req.body.track_author;
 	var trackYear = req.body.track_year;
 	var trackUrl = req.body.track_url;
-
-		tracks.forEach(function(track){
+	tracks.forEach(function(track){
 		if( parseInt(id) === track.id){
 			currentTrack = track;
 			console.log("Found Match!");
@@ -87,23 +85,16 @@ app.put('/tracks/update/:id', function (req, res){
 	});
 });
 
-
-
-
-
 //Delete a track
 app.delete('/tracks/:id', function (req, res){
 	var id = req.params.id;
 	tracks.forEach(function(track, index){
 		if( parseInt(id) === track.id){
-			tracks.splice(index, 1);
-			
+			tracks.splice(index, 1);		
 		} 
 	});
 		res.redirect('/');
-
 });
-
 
 //Additonal Application
 app.get('/about', function (req, res){
