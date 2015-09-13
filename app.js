@@ -9,10 +9,13 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
 
 //Set initial ID
-var id = 2;
+var id = 4;
 
 //Created track array
-var tracks = [{title: "Demo Dude", author: "Donteezy", year: 2015, id: id, url: "http://developer.mozilla.org/@api/deki/files/2926/=AudioTest_(1).ogg"}];
+var tracks = [{title: "Bassy", author: "Dizzy D", year: 2015, id: id, url: "http://developer.mozilla.org/@api/deki/files/2926/=AudioTest_(1).ogg"},
+{title: "Chicago", author: "Bizzy D", year: 2012, id: id, url: "http://developer.mozilla.org/@api/deki/files/2926/=AudioTest_(1).ogg"},
+{title: "The Bay", author: "Susie B", year: 2014, id: id, url: "http://developer.mozilla.org/@api/deki/files/2926/=AudioTest_(1).ogg"}
+];
 
 //Get the home application page
 app.get('/', function(req,res){
