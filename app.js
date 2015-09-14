@@ -12,10 +12,18 @@ app.use(methodOverride('_method'));
 var id = 4;
 
 //Created track array
-var tracks = [{title: "Bassy", author: "Dizzy D", year: 2015, id: id, url: "http://developer.mozilla.org/@api/deki/files/2926/=AudioTest_(1).ogg"},
-{title: "Chicago", author: "Bizzy D", year: 2012, id: id, url: "http://developer.mozilla.org/@api/deki/files/2926/=AudioTest_(1).ogg"},
-{title: "The Bay", author: "Susie B", year: 2014, id: id, url: "http://developer.mozilla.org/@api/deki/files/2926/=AudioTest_(1).ogg"}
+var tracks = [{title: "Bassy", author: "Dizzy D", year: 2015, id: 1, url: "http://developer.mozilla.org/@api/deki/files/2926/=AudioTest_(1).ogg"},
+{title: "Chicago", author: "Bizzy D", year: 2012, id: 2, url: "http://developer.mozilla.org/@api/deki/files/2926/=AudioTest_(1).ogg"},
+{title: "The Bay", author: "Susie B", year: 2014, id: 3, url: "http://developer.mozilla.org/@api/deki/files/2926/=AudioTest_(1).ogg"}
 ];
+
+// function Track(title, author, year, url, id){
+// 	this.title =title;
+// 	this.author=author;
+// 	this.year=year;
+// 	this.url=url;
+// 	this.id=id;
+// }
 
 //Get the home application page
 app.get('/', function(req,res){
@@ -78,6 +86,8 @@ app.put('/tracks/update/:id', function (req, res){
 			currentTrack = track;
 			console.log("Found Match!");
 			
+		} else {
+			res.render("404");
 		} 
 	currentTrack.title = trackTitle;
 	currentTrack.author = trackAuthor;
@@ -99,13 +109,20 @@ app.delete('/tracks/:id', function (req, res){
 		res.redirect('/');
 });
 
+//Catch All
+app.get('*', function(req,res){
+	res.render('404');
+});
+
+//Sort Array
+
 //Additonal Application
 app.get('/about', function (req, res){
-	res.render('about', {tracks: tracks});
+	res.render('site/about', {tracks: tracks});
 });
 
 app.get('/contact', function ( req, res){
-	res.render('contact', {tracks: tracks});
+	res.render('site/contact', {tracks: tracks});
 });
 
 app.listen(3000, function(){

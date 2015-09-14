@@ -17,10 +17,10 @@
 <p><%= track.author%></p>
 <p><%= track.year%></p>
 <p>
-<img src= <%= track.url%> >
+<audio controls="controls"> <source src= <%= track.url%> ></audio>
 </p>
 
-<a href="/tracks/update/<%= track.id%>" >Update</a>
+<a class="btn btn-primary" href="/tracks/update/<%= track.id%>" >Update</a>
 </center>
 
 
