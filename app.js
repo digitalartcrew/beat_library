@@ -5,8 +5,8 @@ var express = require('express'),
 
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
-app.use(bodyParser.urlencoded({extended: true})); 
-app.use(methodOverride('_method'));
+app.use(bodyParser.urlencoded({extended: true})); //post
+app.use(methodOverride('_method'));// Put and Delete 
 
 //Set initial ID
 var id = 4;
@@ -17,13 +17,13 @@ var tracks = [{title: "Bassy", author: "Dizzy D", year: 2015, id: 1, url: "http:
 {title: "The Bay", author: "Susie B", year: 2014, id: 3, url: "http://developer.mozilla.org/@api/deki/files/2926/=AudioTest_(1).ogg"}
 ];
 
-// function Track(title, author, year, url, id){
-// 	this.title =title;
-// 	this.author=author;
-// 	this.year=year;
-// 	this.url=url;
-// 	this.id=id;
-// }
+function Track(title, author, year, url, id){
+	this.title =title;
+	this.author=author;
+	this.year=year;
+	this.url=url;
+	this.id=id;
+}
 
 //Get the home application page
 app.get('/', function(req,res){
@@ -37,11 +37,7 @@ app.get('/tracks/new', function (req,res){
 
 //To save a new track
 app.post('/tracks', function (req,res){
-	var trackTitle= req.body.track_title;
-	var trackAuthor = req.body.track_author;
-	var trackYear = req.body.track_year;
-	var trackUrl = req.body.track_url;
-	tracks.push({title: trackTitle, author: trackAuthor, year: trackYear, id: id, url: trackUrl});
+	tracks.push(new Track(req.body.track_title, req.body.track_author, req.body.track_year, req.body.track_url, id));
 	id++;
 	res.redirect('/');
 });
@@ -115,6 +111,20 @@ app.get('*', function(req,res){
 });
 
 //Sort Array
+app.put('/sort', function(req,res){
+	tracks.sort(function(a,b){
+		if (a.title > b.title) {
+    return 1;
+  }
+  if (a.title < b.title) {
+    return -1;
+  }
+  // a must be equal to b
+  return 0;
+
+	});
+	res.redirect('/');
+});
 
 //Additonal Application
 app.get('/about', function (req, res){
