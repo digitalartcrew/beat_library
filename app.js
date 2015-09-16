@@ -82,10 +82,6 @@ app.delete('/tracks/:id', function (req, res){
   });
 });
 
-//Catch All
-app.get('*', function(req,res){
-	res.render('404');
-});
 
 //Sort Array
 app.put('/sort', function(req,res){
@@ -94,11 +90,11 @@ db.tracks.find().sort( { name: -1 } );
 
 //Additonal Application
 app.get('/about', function (req, res){
-	res.render('site/about', {tracks: tracks});
+	res.render('site/about');
 });
 
 app.get('/contact', function ( req, res){
-	res.render('site/contact', {tracks: tracks});
+	res.render('site/contact');
 });
 
 app.listen(3000, function(){
