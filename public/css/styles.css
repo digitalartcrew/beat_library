@@ -71,6 +71,7 @@ only screen and (max-width: 760px),
 	/* Force table to not be like tables anymore */
 	table, thead, tbody, th, td, tr { 
 		display: block; 
+		
 	}
 	
 	/* Hide table headers (but not display: none;, for accessibility) */
@@ -80,13 +81,16 @@ only screen and (max-width: 760px),
 		left: -9999px;
 	}
 	
-	tr { border: 1px solid #ccc; }
+	tr { border: 1px solid #ccc; 
+		
+	}
 	
 	td { 
 		/* Behave  like a "row" */
 		border: none;
 		border-bottom: 1px solid #eee; 
 		position: relative;
+
 	
 	}
 	
